@@ -12,7 +12,7 @@ namespace Utils
         public static List<string> ReadFile(string path)
         {
             List<string> data = new List<string>();
-            StreamReader file = new System.IO.StreamReader(path);
+            StreamReader file = new StreamReader(path);
             string line;
 
             while ((line = file.ReadLine()) != null)
