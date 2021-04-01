@@ -7,7 +7,7 @@ namespace Days
     {
         static void Main(string[] args)
         {
-            IDay day = new Day2();
+            IDay day = new Day3();
             day.SetProgramInput();
             
             var result1 = day.RunPart1();

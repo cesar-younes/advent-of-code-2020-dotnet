@@ -13,7 +13,20 @@ namespace Days
         public Day2()
         {
             base.FetchRawInput(2);
+        }
+
+        public void SetProgramInput()
+        {
             programInput = new List<PasswordItem>();
+            foreach (string s in rawInput)
+            {
+                PasswordItem passwordItem = new PasswordItem();
+                passwordItem.min = int.Parse(s.Substring(0, s.IndexOf('-')));
+                passwordItem.max = int.Parse(s.Substring(s.IndexOf('-') + 1, (s.IndexOf(':') - 2) - (s.IndexOf('-') + 1)));
+                passwordItem.compareChar = s[s.IndexOf(':') - 1];
+                passwordItem.password = s.Substring(s.IndexOf(':') + 2);
+                programInput.Add(passwordItem);
+            }
         }
 
         public int RunPart1()
@@ -22,6 +35,7 @@ namespace Days
             foreach(PasswordItem passwordItem in  programInput)
             {
                 int count = passwordItem.password.Count(c => c == passwordItem.compareChar);
+                
                 if(count >= passwordItem.min && count <= passwordItem.max)
                 {
                     validPasswords++;
@@ -41,19 +55,6 @@ namespace Days
                 }
             }
             return validPasswords;
-        }
-
-        public void SetProgramInput()
-        {
-            foreach(string s in rawInput)
-            {
-                PasswordItem passwordItem = new PasswordItem();
-                passwordItem.min = int.Parse(s.Substring(0, s.IndexOf('-')));
-                passwordItem.max = int.Parse(s.Substring(s.IndexOf('-') + 1, (s.IndexOf(':')-2)-(s.IndexOf('-')+1)));
-                passwordItem.compareChar = s[s.IndexOf(':')-1];
-                passwordItem.password = s.Substring(s.IndexOf(':') + 2);
-                programInput.Add(passwordItem);
-            }
         }
     }
 
